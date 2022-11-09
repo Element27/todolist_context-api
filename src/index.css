@@ -1,0 +1,97 @@
+body {
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.App {
+  padding: 1rem 2rem;
+}
+
+.inputsection {
+  width: 100%;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 5fr 1fr;
+}
+
+.maininput {
+  padding: 1rem 1.5rem;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid skyblue;
+  font-weight: 600;
+}
+
+.inputbutton {
+  border: none;
+  outline: none;
+  background-color: skyblue;
+  font-weight: 700;
+}
+
+.listitem {
+  display: grid;
+  gap: 1rem;
+  padding: 0 1rem;
+  grid-template-columns: 1fr 6fr 1fr 1fr 1fr;
+  align-items: center;
+  border-bottom: 1px solid skyblue;
+}
+
+.listitem p {
+  font-weight: 500;
+}
+
+.itemssection {
+  margin: 1rem auto;
+}
+
+.edit,
+.done,
+.delete,
+.view {
+  border: none;
+  outline: none;
+  padding: .5rem;
+  border-radius: 10%;
+  width: fit-content;
+  background-color: transparent;
+  visibility: hidden;
+}
+
+.listitem:hover {
+  background-color: #f1f1f1;
+}
+
+.listitem:hover .edit,
+.listitem:hover .done,
+.listitem:hover .delete,
+.listitem:hover .view {
+  visibility: visible;
+}
+
+.edit:hover {
+  background-color: skyblue;
+}
+
+.done:hover {
+  background-color: green;
+}
+
+.view:hover {
+  background-color: yellow;
+}
+
+.delete:hover {
+  background-color: red;
+}
