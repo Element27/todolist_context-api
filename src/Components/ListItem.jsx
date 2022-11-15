@@ -1,30 +1,30 @@
 import { useContext } from 'react';
 import TodoContext from '../Helper/Context/TodoContext/TodoContext';
 import ActionButton from './ActionButton'
+import { Link } from 'react-router-dom'
 
 
-const ListItem = ({ title, editId }) => {
-
-  const { toggleComplete, todos } = useContext(TodoContext);
+const ListItem = ({ title, todoId, isComplete, todoObj, toggleEditMode, editMode }) => {
+  const { toggleComplete, deleteTodo } = useContext(TodoContext);
 
   const toggleIsComplete = (id) => {
     toggleComplete(id);
-    console.log(todos)
   }
 
 
   return (
-    <div className='listitem'>
+    <div className={isComplete ? "completed" : 'listitem'}>
       <ActionButton
-        title="✅"
+        title={isComplete ? "❌" : "✅"}
         classname="done"
-        editId={editId}
-        func={() => toggleIsComplete(editId)}
+        func={() => toggleIsComplete(todoId)}
       />
       <p> {title}</p>
-      <ActionButton title="✍🏽" classname="edit" />
-      <ActionButton title="📖" classname="view" />
-      <ActionButton title="🚮" classname="delete" />
+      <ActionButton title="✍🏽" classname="edit" func={() => toggleEditMode(todoObj)} />
+      <Link to={`${todoId}`}>
+        <ActionButton title="📖" classname="view" />
+      </Link>
+      <ActionButton title="🚮" classname="delete" func={() => deleteTodo(todoId)} />
     </div>
   )
 }

@@ -39,6 +39,13 @@ code {
   font-weight: 700;
 }
 
+.updatebutton {
+  border: none;
+  outline: none;
+  background-color: dodgerblue;
+  font-weight: 700;
+}
+
 .listitem {
   display: grid;
   gap: 1rem;
@@ -48,8 +55,23 @@ code {
   border-bottom: 1px solid skyblue;
 }
 
+.completed {
+  display: grid;
+  gap: 1rem;
+  padding: 0 1rem;
+  grid-template-columns: 1fr 6fr 1fr 1fr 1fr;
+  align-items: center;
+  border-bottom: 1px solid skyblue;
+  background-color: #f1f1f1;
+}
+
 .listitem p {
   font-weight: 500;
+}
+
+.completed p {
+  font-weight: 500;
+  color: #c4c4c4;
 }
 
 .itemssection {
@@ -80,8 +102,15 @@ code {
   visibility: visible;
 }
 
+.completed:hover .edit,
+.completed:hover .done,
+.completed:hover .delete,
+.completed:hover .view {
+  visibility: visible;
+}
+
 .edit:hover {
-  background-color: skyblue;
+  background-color: yellow;
 }
 
 .done:hover {
@@ -89,9 +118,39 @@ code {
 }
 
 .view:hover {
-  background-color: yellow;
+  background-color: skyblue;
 }
 
 .delete:hover {
   background-color: red;
+}
+
+/* _login */
+._login {
+  padding: 5rem 10rem;
+  background-color: #c4c4c4;
+  border-radius: 1rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: grid;
+  justify-content: center;
+}
+
+._login button {
+  border: 1px solid transparent;
+  background-color: skyblue;
+  font-weight: 600;
+  border-radius: .5rem;
+  padding: .5rem 2rem;
+  transition: ease-in-out linear 300;
+}
+
+._login button:hover {
+  border: 1px solid skyblue;
+  background-color: #f1f1f1;
+  color: skyblue;
+  transform: scale(110%);
+  transition: ease-in-out linear 300;
 }

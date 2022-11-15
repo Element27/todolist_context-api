@@ -8,17 +8,21 @@
 import React, { useReducer } from 'react';
 import TodoContext from './TodoContext';
 import TodoReducer from './TodoReducer';
-import { ADD_TODO, TOGGLE_COMPLETE } from './TodoType';
+import { ADD_TODO, DELETE_TODO, EDIT_TODO, GET_TODO_BY_ID, LOGIN_USER, TOGGLE_COMPLETE } from './TodoType';
 
 export const TodoState = ({ children }) => {
 
   const initialState = {
     todos: [],
+    isAuthenticated: false,
   };
 
   const [state, dispatch] = useReducer(TodoReducer, initialState);
 
   // pure function that will dispatch actions to the reducer
+  const userLogin = () => {
+    dispatch({ type: LOGIN_USER })
+  }
   const addTodo = (todoObj) => {
     dispatch({ type: ADD_TODO, payload: todoObj })
   }
@@ -26,13 +30,30 @@ export const TodoState = ({ children }) => {
     dispatch({ type: TOGGLE_COMPLETE, payload: todoId })
   }
 
+  const deleteTodo = (todoId) => {
+    dispatch({ type: DELETE_TODO, payload: todoId })
+  }
+
+  const editTodo = (newTodoObj) => {
+    dispatch({ type: EDIT_TODO, payload: newTodoObj })
+  }
+
+  const getTodoById = (todoId) => {
+    dispatch({ type: GET_TODO_BY_ID, payload: todoId })
+  }
+
 
   return (
     <TodoContext.Provider
       value={{
+        userLogin,
+        isAuthenticated: state.isAuthenticated,
         todos: state.todos,
         addTodo,
         toggleComplete,
+        editTodo,
+        deleteTodo,
+        getTodoById,
         ...state,
 
       }}>

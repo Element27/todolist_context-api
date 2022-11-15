@@ -1,10 +1,5 @@
 
 const Input = ({ title, setTitle }) => {
-
-
-
-
-
   return (
     <input
       type="text"

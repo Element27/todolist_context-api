@@ -1,9 +1,13 @@
 import React from 'react'
 
-const InputButton = ({ handleSubmit }) => {
+export const InputButton = ({ handleSubmit }) => {
   return (
-    <button className='inputbutton' onClick={handleSubmit}>Add</button>
+    <button className="inputbutton" onClick={handleSubmit}>Add</button>
   )
 }
 
-export default InputButton
+export const UpdateButton = ({ handleSubmit }) => {
+  return (
+    <button className="updatebutton" onClick={handleSubmit}>Update</button>
+  )
+}
