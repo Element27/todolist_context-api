@@ -1,17 +1,18 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
 import Input from '../Components/Input'
 import { InputButton, UpdateButton } from '../Components/InputButton'
 import ListItem from '../Components/ListItem'
 import TodoContext from '../Helper/Context/TodoContext/TodoContext';
 import { v4 as uuidv4 } from 'uuid';
+import TodoServices from '../Helper/Context/TodoContext/todo.service';
 
 function TodoList() {
 
   const [title, setTitle] = useState("");
   const [editMode, setEditMode] = useState(false);
   const [todoToEdit, setTodoToEdit] = useState({});
-  const { addTodo, todos, isAuthenticated, userLogin, editTodo } = useContext(TodoContext);
+  const { addTodo, todos, isAuthenticated, userLogin, editTodo, loadTodos } = useContext(TodoContext);
 
 
   const handleAddtodo = () => {
@@ -37,7 +38,11 @@ function TodoList() {
     setEditMode(false)
     setTitle("");
   }
-
+  useEffect(() => {
+    TodoServices.getTodos().then((todos) => {
+      loadTodos(todos)
+    })
+  }, [])
 
   const allTodos = todos.map((todo, index) => {
     const { title, id, isComplete } = todo
@@ -50,6 +55,8 @@ function TodoList() {
       todoObj={todo}
       editMode={editMode} />
   });
+
+
 
   return (
     <div>

@@ -8,13 +8,14 @@
 import React, { useReducer } from 'react';
 import TodoContext from './TodoContext';
 import TodoReducer from './TodoReducer';
-import { ADD_TODO, DELETE_TODO, EDIT_TODO, GET_TODO_BY_ID, LOGIN_USER, TOGGLE_COMPLETE } from './TodoType';
+import { ADD_TODO, DELETE_TODO, EDIT_TODO, GET_TODO_BY_ID, LOAD_TODOS, LOAD_TODO_BY_ID, LOGIN_USER, TOGGLE_COMPLETE } from './TodoType';
 
 export const TodoState = ({ children }) => {
 
   const initialState = {
     todos: [],
-    isAuthenticated: false,
+    todo: {},
+    isAuthenticated: true,
   };
 
   const [state, dispatch] = useReducer(TodoReducer, initialState);
@@ -23,6 +24,10 @@ export const TodoState = ({ children }) => {
   const userLogin = () => {
     dispatch({ type: LOGIN_USER })
   }
+  const loadTodos = (todosArray) => {
+    dispatch({ type: LOAD_TODOS, payload: todosArray })
+  }
+
   const addTodo = (todoObj) => {
     dispatch({ type: ADD_TODO, payload: todoObj })
   }
@@ -41,12 +46,16 @@ export const TodoState = ({ children }) => {
   const getTodoById = (todoId) => {
     dispatch({ type: GET_TODO_BY_ID, payload: todoId })
   }
+  const loadTodoById = (todoId) => {
+    dispatch({ type: LOAD_TODO_BY_ID, payload: todoId })
+  }
 
 
   return (
     <TodoContext.Provider
       value={{
         userLogin,
+        loadTodos,
         isAuthenticated: state.isAuthenticated,
         todos: state.todos,
         addTodo,
@@ -54,6 +63,7 @@ export const TodoState = ({ children }) => {
         editTodo,
         deleteTodo,
         getTodoById,
+        loadTodoById,
         ...state,
 
       }}>

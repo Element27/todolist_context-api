@@ -8,7 +8,7 @@
 // the useReducer assignes the values in the state and dispatch into our todoReducer as arguements for us to read in as parameters here
 // the contents of the initialState above is assigned to the state. This is so because when we spread the state, we have access to all the objects in the initial state.
 
-import { ADD_TODO, TOGGLE_COMPLETE, LOGIN_USER, DELETE_TODO, EDIT_TODO, GET_TODO_BY_ID } from "./TodoType";
+import { ADD_TODO, TOGGLE_COMPLETE, LOGIN_USER, DELETE_TODO, EDIT_TODO, GET_TODO_BY_ID, LOAD_TODOS, LOAD_TODO_BY_ID } from "./TodoType";
 
 const TodoReducer = (state, action) => {
   const { todos } = state;
@@ -20,6 +20,13 @@ const TodoReducer = (state, action) => {
         ...state,
         isAuthenticated: true,
       };
+    // * LoadTodos:
+
+    case LOAD_TODOS:
+      return {
+        ...state,
+        todos: payload,
+      }
 
     case ADD_TODO:
       return {
@@ -73,6 +80,12 @@ const TodoReducer = (state, action) => {
       return {
         ...state,
         todo: todos.find((todo) => todo.id === payload)
+      }
+
+    case LOAD_TODO_BY_ID:
+      return {
+        ...state,
+        todo: payload
       }
 
     case DELETE_TODO:
